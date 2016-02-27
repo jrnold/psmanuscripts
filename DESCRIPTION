@@ -1,0 +1,12 @@
+Package: apsamanu
+Type: Package
+Title: Political Science Formats for R Markdown
+Version: 0.1.0
+Authors@R: person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", role = c("aut", "cre"))
+Description: A suite of custom R Markdown formats and templates for
+    authoring political science manuscripts for journal submissions.
+Imports:
+    rmarkdown
+License: GPL-3
+LazyData: TRUE
+RoxygenNote: 5.0.1

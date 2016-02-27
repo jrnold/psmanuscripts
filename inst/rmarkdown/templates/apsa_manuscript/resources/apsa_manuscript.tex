@@ -1,0 +1,140 @@
+\documentclass[12pt,letterpaper,]{article}
+
+% Double spacing
+\usepackage{setspace}
+\setstretch{2}
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+
+% Use only with pdflatex
+\usepackage[utf8]{inputenc}
+% Fonts
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+
+% Margins at least 1 in
+% Margins of 1.25 inches in APSA Style Manual
+\usepackage[margin=1.5in]{geometry}
+
+\usepackage{hyperref}
+$if(colorlinks)$
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+$endif$
+\hypersetup{unicode=true,
+$if(title-meta)$
+            pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+            pdfauthor={$author-meta$},
+$endif$
+$if(keywords)$
+            pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
+$endif$
+            colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            urlcolor=black,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+\usepackage{natbib}
+\setcitestyle{aysep={,}}
+\bibliographystyle{apsr}
+
+$if(listings)$
+\usepackage{listings}
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+$if(tables)$
+\usepackage{longtable,booktabs}
+$endif$
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Do not number sections
+% Section formats from APSA Style Guide
+\usepackage{titlesec}
+% 1st level is centered and bold
+\titleformat{\section}[block]{\normalfont\bfseries\large\filcenter}{}{}{}
+% 2nd level is to the left and bold
+\titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\filright}{}{}{}
+% 3rd level is underlined and runs into the paragraph
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries\normalsize}{}{}{}
+% Do not number sections
+\setcounter{secnumdepth}{0}
+
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+% manuscripts should not have thanks
+\title{$title$}
+$if(subtitle)$
+\providecommand{\subtitle}[1]{}
+\subtitle{$subtitle$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+\date{$date$}
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+
+\begin{abstract}
+$abstract$
+\end{abstract}
+\thispagestyle{empty}
+\clearpage
+
+\setcounter{page}{1}
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$body$
+
+$if(bibliography)$
+$if(biblio-title)$
+\renewcommand\refname{$biblio-title$}
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+\end{document}
