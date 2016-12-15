@@ -10,13 +10,15 @@
 
 % Use only with pdflatex
 \usepackage[utf8]{inputenc}
+
 % Fonts
+% Use a Times-like fonts for text and math
 \usepackage{newtxtext}
 \usepackage{newtxmath}
 
 % Margins at least 1 in
 % Margins of 1.25 inches in APSA Style Manual
-\usepackage[margin=1.5in]{geometry}
+\usepackage[margin=$margin$in]{geometry}
 
 \usepackage{hyperref}
 $if(colorlinks)$
@@ -26,9 +28,12 @@ $endif$
 $if(title-meta)$
             pdftitle={$title-meta$},
 $endif$
-$if(author-meta)$
+$if(anonymouse)$
+$else$
+  $if(author-meta)$
             pdfauthor={$author-meta$},
-$endif$
+  $endif$
+$else$
 $if(keywords)$
             pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
 $endif$
@@ -40,10 +45,17 @@ $endif$
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 
-
+$if(natbib)$
 \usepackage{natbib}
-\setcitestyle{aysep={,}}
+\usepacakge{har2nat}
 \bibliographystyle{apsr}
+$endif$
+$if(biblatex)$
+\usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
+$if(biblatexoptions)$\ExecuteBibliographyOptions{$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$}$endif$
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
 
 $if(listings)$
 \usepackage{listings}
@@ -104,9 +116,12 @@ $if(subtitle)$
 \providecommand{\subtitle}[1]{}
 \subtitle{$subtitle$}
 $endif$
-$if(author)$
-\author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
+$if(anonymous)$
+$else$
+  $if(author)$
+  \author{$for(author)$$author$$sep$ \and $endfor$}
+  $endif$
+$fi$
 \date{$date$}
 
 \begin{document}
