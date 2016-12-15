@@ -1,12 +1,26 @@
-Package: apsamanu
+Package: rmdmanuscripts
 Type: Package
-Title: Political Science Formats for R Markdown
+Title: R Markdown Templates for Manuscripts
 Version: 0.1.0
-Authors@R: person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+  person("Jeffrey", "Arnold", email = "jeffrey.arnold@gmail.com",
+         role = c("aut", "cre")),
+  person("JJ", "Allaire", role = c("cph"), email = "jj@rstudio.com",
+         comment = "code from the rticles package"),
+  person("Hadley", "Wickham", role = "cph", email = "hadley@rstudio.com",
+         comment = "code from the rticles package"),
+  person("Yihui", "Xie", role = "cph", email = "yihui@rstudio.com",
+         comment = "code from the rticles package"),
+  person(family = "RStudio", role = "cph",
+         comment = "code from the rticles package")
+  )  
 Description: A suite of custom R Markdown formats and templates for
     authoring political science manuscripts for journal submissions.
 Imports:
-    rmarkdown
+    knitr,
+    rmarkdown,
+    yaml
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr

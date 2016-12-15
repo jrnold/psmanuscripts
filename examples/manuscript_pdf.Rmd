@@ -1,0 +1,31 @@
+---
+title: "Political Science Manuscript"
+author: "Jeffrey Arnold"
+output: rmdmanuscripts::ps_manuscript_pdf
+abstract: >-
+  Abstract text goes here.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Section
+
+## Subsection
+
+### Subsubsection
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet hendrerit arcu, ut mollis urna. Ut dictum augue at aliquet accumsan. Duis sed enim nulla. In pretium suscipit nibh, ut pharetra odio tincidunt vitae. Sed sed lorem eros. Integer orci est, ultricies ac ante in, mollis consequat elit. Suspendisse volutpat, magna in pharetra venenatis, tellus massa dapibus arcu, eget convallis tellus neque ac nulla. Donec neque eros, viverra quis viverra sit amet, commodo ornare ex. Sed quis libero nec tortor sagittis feugiat. Etiam ultricies augue sit amet ipsum sollicitudin vehicula. Donec lobortis justo non erat dignissim ultrices. Ut ornare, nunc non volutpat sodales, dolor lorem pulvinar neque, a ornare sem risus in nibh. Nunc ultrices nunc ac sollicitudin condimentum. Morbi facilisis id leo sit amet vulputate.
+
+Aliquam tempus tempor dui, sit amet fringilla elit ullamcorper eu. Nam hendrerit tortor nec malesuada porttitor. Etiam accumsan magna sed molestie hendrerit. Quisque placerat nisl eget diam facilisis, nec semper nisi viverra. Nam facilisis porttitor urna, ac condimentum diam lacinia eget. Etiam turpis massa, euismod eu ligula at, tristique malesuada nisl. Nunc est quam, maximus id dui ut, pharetra maximus orci. Praesent vitae lacus venenatis, lobortis diam efficitur, commodo tellus. Mauris venenatis augue a libero viverra ultrices. Proin efficitur augue eu enim egestas pulvinar. Nullam interdum lacinia lectus, at ultricies ante convallis a. Nullam volutpat mattis bibendum. Mauris varius feugiat scelerisque. Aliquam tortor nulla, ultrices at libero id, fringilla fermentum tellus. Sed nec consequat ligula, bibendum volutpat libero. Sed posuere elementum urna, vel venenatis sem varius non.
+
+## Subsection
+
+### Subsubsection
+
+Nunc convallis nulla at tempor fringilla. Phasellus eget massa consequat, aliquet neque ac, varius velit. Nam in rhoncus nisi. Quisque justo dolor, pellentesque a orci euismod, mattis mollis ligula. Aliquam vel lorem a leo luctus vulputate. Morbi ultrices placerat sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis gravida, mi non pulvinar commodo, mauris mi accumsan est, in convallis neque sapien ut mi. Donec ullamcorper sem sit amet ex rhoncus, id molestie sapien rutrum. Cras sed convallis mi, nec placerat orci.
+
+Nulla sed quam metus. Quisque ac tortor vel lacus facilisis convallis at porta est. Morbi ac turpis vitae nibh consectetur faucibus. Cras vitae ullamcorper lectus. Aenean cursus lobortis tincidunt. Nam eget aliquam lorem. Nullam id turpis sed magna iaculis dignissim. Vivamus non volutpat magna.
+
+Sed consequat tortor sed eros luctus, eget euismod ipsum varius. Donec malesuada ac lectus vulputate luctus. Sed mi orci, aliquet ac dui vel, posuere blandit sem. Aliquam sit amet facilisis dolor, in semper elit. Fusce a tempus risus, lobortis posuere nunc. Etiam accumsan dolor at nunc hendrerit, sed condimentum ex tincidunt. Nam facilisis ut urna vitae vulputate. Curabitur consequat sagittis tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vel volutpat tortor. Proin rhoncus ut lectus quis euismod. Curabitur magna sem, sagittis vel augue condimentum, iaculis venenatis leo. Duis ut feugiat sem. Duis fringilla, mi in feugiat facilisis, dui arcu condimentum tellus, nec fringilla lorem risus sed sem. Duis sodales luctus vehicula. Quisque imperdiet pellentesque purus, eget vulputate nibh tincidunt at.
