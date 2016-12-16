@@ -1,9 +1,10 @@
 ---
 title: "Political Science Manuscript"
 author: "Jeffrey Arnold"
-output: rmdmanuscripts::ps_manuscript_pdf
-abstract: >-
-  Abstract text goes here.
+output: 
+  rmdmanuscripts::ps_manuscript_pdf:
+    latex_engine: xelatex
+abstract: Abstract text goes here.
 ---
 
 ```{r setup, include=FALSE}

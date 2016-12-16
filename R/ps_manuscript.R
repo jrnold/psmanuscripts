@@ -25,3 +25,19 @@ ps_manuscript_pdf <- function(..., keep_tex = TRUE) {
                        template = template,
                        keep_tex = keep_tex)
 }
+
+
+#' @rdname ps_manuscript_pdf
+#' @param csl Path to CSL file to use
+#' @export
+ps_manuscript_word <- function(..., csl = NULL) {
+  reference_docx <- find_resource("ps_manuscript_word", "reference.docx")
+  fmt <- rmarkdown::word_document(..., reference_docx = reference_docx)
+  if (is.null(csl)) {
+    csl <- find_csl("american-political-science-review")
+  }
+  fmt$pandoc$args <- c(fmt$pandoc$args,
+                       "--csl",
+                       rmarkdown::pandoc_path_arg(csl))
+  fmt
+}
