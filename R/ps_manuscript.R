@@ -19,10 +19,17 @@
 #' }
 #'
 #' @export
-ps_manuscript_pdf <- function(..., keep_tex = TRUE) {
-  template <- find_resource("ps_manuscript_pdf", "template.tex")
+ps_manuscript_pdf <- function(...,
+                              dev = "pdf",
+                              citation_package = "natbib",
+                              highlight = NULL,
+                              latex_engine = "xelatex",
+                              keep_tex = TRUE,
+                              toc = FALSE,
+                              number_sections = FALSE) {
+  # template <- find_resource("ps_manuscript_pdf", "template.tex")
   inherit_pdf_document(...,
-                       template = template,
+                       template = "default",
                        keep_tex = keep_tex)
 }
 
