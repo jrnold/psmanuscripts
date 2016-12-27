@@ -1,78 +1,123 @@
-\documentclass[12pt,letterpaper,]{article}
-\usepackage[paperwidth=8.5in, paperheight=11in, top=1in, bottom=1in, left=1.25in, right=1.25in, headheight=14pt, headsep=\baselineskip]{geometry}
+% Derived from the default pandoc template for LaTeX
+% https://github.com/jgm/pandoc-templates/blob/d4f203657a838e4aa7949e39778accb55cfea303/default.latex
+% I tried to only alter the default template, but getting the title page correct required a new template
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$for(classoption)$$classoption$$sep$,$endfor$letterpaper]{article}
 
-
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$else$
+\usepackage{lmodern}
+$endif$
+$if(linestretch)$
+\usepackage{setspace}
+\setstretch{$linestretch$}
+$endif$
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{eurosym}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+$for(fontfamilies)$
+  \newfontfamily{$fontfamilies.name$}[$fontfamilies.options$]{$fontfamilies.font$}
+$endfor$
+$if(mainfont)$
+    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+$if(sansfont)$
+    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+$if(monofont)$
+    \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
+$endif$
+$if(mathfont)$
+    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
 
+\usepackage[letterpaper,margin=$margin$in]{geometry}
 
-
-% Needs to be double-spaced
-\usepackage{setspace}
-\setstretch{2}
-
-%% fancyhdr
-% \usepackage{fancyhdr}
-
-%% caption style
-\usepackage[format=hang, labelfont=bf, font=small]{caption}
-
-\usepackage{hyperref}
+\usepackage[unicode=true]{hyperref}
 $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 $endif$
-\hypersetup{unicode=true,
+\hypersetup{
 $if(title-meta)$
             pdftitle={$title-meta$},
 $endif$
 $if(anonymous)$
 $else$
-  $if(author-meta)$
+$if(author-meta)$
             pdfauthor={$author-meta$},
-  $endif$
+$endif$
 $endif$
 $if(keywords)$
-            pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
+            pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
 $endif$
+$if(colorlinks)$
             colorlinks=true,
-            linkcolor=black,
-            citecolor=black,
-            urlcolor=black,
+            linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+            citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+            urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+$else$
             pdfborder={0 0 0},
+$endif$
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+$if(lang)$
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+$if(babel-newcommands)$
+  $babel-newcommands$
+$endif$
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+$for(polyglossia-otherlangs)$
+  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+$endfor$
+\fi
+$endif$
 
-% Citations should by APSR style
+% added value
+% Put specific values for the styles
+% For natbib use Harvard styles with apsr
 $if(natbib)$
-\usepackage{natbib}
-\usepacakge{har2nat}
+\usepackage[$for(natbiboptions)$$natbiboptions$$sep$,$endfor$]{natbib}
+\usepackage{har2nat}
 \bibliographystyle{apsr}
 $endif$
 
+% For biblatex use biblatex-chicago
 $if(biblatex)$
 \usepackage[authordate]{biblatex-chicago}
-$if(biblatexoptions)$\ExecuteBibliographyOptions{$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$}$endif$
+$if(biblatexoptions)$\ExecuteBibliographyOptions{$for(biblatexoptions)$$biblatexoptions$,$endfor$}$endif$
 $endif$
 
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
 
-$if(listings)$
-\usepackage{listings}
-$endif$
-
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-
-$if(verbatim-in-note)$
-\usepackage{fancyvrb}
-\VerbatimFootnotes % allows verbatim text in footnotes
-$endif$
 $if(tables)$
 \usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
 $endif$
 $if(graphics)$
 \usepackage{graphicx,grffile}
@@ -90,9 +135,20 @@ $if(links-as-notes)$
 \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 $endif$
 
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% By default if numbering, only number up to two-sections
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$2$endif$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
 
 % Do not number sections
 % Section formats from APSA Style Guide
@@ -103,25 +159,42 @@ $endif$
 \titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\filright}{}{}{}
 % 3rd level is underlined and runs into the paragraph
 \titleformat{\subsubsection}[runin]{\normalfont\normalsize\itshape}{}{}{}
-% Do not number sections
-\setcounter{secnumdepth}{0}
 
+% By default if numbering, only number up to two-sections
+$if(numbersections)$
+\setcounter{secnumdepth}{2}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 
 $for(header-includes)$
 $header-includes$
 $endfor$
 
-% manuscripts should not have thanks
-\title{$title$}
+$if(title)$
+\title{$title$$if(anonymous)$$else$$if(thanks)$\thanks{$thanks$}$endif$$endif$}
+$endif$
 $if(subtitle)$
 \providecommand{\subtitle}[1]{}
 \subtitle{$subtitle$}
 $endif$
+
+% should this be done at the template or R level?
 $if(anonymous)$
 $else$
-  $if(author)$
-  \author{$for(author)$$author$$sep$ \and $endfor$}
-  $endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(institute)$
+\providecommand{\institute}[1]{}
+\institute{$for(institute)$$institute$$sep$ \and $endfor$}
+$endif$
 $endif$
 \date{$date$}
 
@@ -130,13 +203,15 @@ $if(title)$
 \maketitle
 $endif$
 
+$if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
+$endif$
+
+% avoid numbering the title page
 \thispagestyle{empty}
 \clearpage
-
-\setcounter{page}{1}
 
 $for(include-before)$
 $include-before$
@@ -144,14 +219,25 @@ $endfor$
 
 $body$
 
+$if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
 \renewcommand\refname{$biblio-title$}
 $endif$
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 $endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
 $for(include-after)$
 $include-after$
+
 $endfor$
 \end{document}

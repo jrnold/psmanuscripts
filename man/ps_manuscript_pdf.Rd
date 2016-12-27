@@ -5,14 +5,33 @@
 \alias{ps_manuscript_word}
 \title{Political Science PDF manuscript format}
 \usage{
-ps_manuscript_pdf(..., keep_tex = TRUE)
+ps_manuscript_pdf(..., number_sections = FALSE, fig_caption = TRUE,
+  dev = "pdf", highlight = NULL, latex_engine = "xelatex",
+  citation_package = "natbib", pandoc_args = NULL, margin = 1,
+  fontsize = 12, linestretch = 2, colorlinks = FALSE)
 
 ps_manuscript_word(..., csl = NULL)
 }
 \arguments{
 \item{...}{Additional arguments to \code{rmarkdown::pdf_document}}
 
-\item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
+\item{number_sections}{\code{TRUE} to number section headings}
+
+\item{fig_caption}{\code{TRUE} to render figures with captions}
+
+\item{dev}{Graphics device to use for figure output (defaults to pdf)}
+
+\item{highlight}{Syntax highlighting style. Supported styles include
+"default", "tango", "pygments", "kate", "monochrome", "espresso",
+"zenburn", and "haddock". Pass \code{NULL} to prevent syntax highlighting.}
+
+\item{latex_engine}{LaTeX engine for producing PDF output. Options are
+"pdflatex", "lualatex", and "xelatex".}
+
+\item{citation_package}{The LaTeX package to process citations, \code{natbib}
+or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
+\item{pandoc_args}{Additional command line options to pass to pandoc}
 
 \item{csl}{Path to CSL file to use}
 }
@@ -32,6 +51,5 @@ and the submission instructions for \emph{APSA}, \emph{AJPS}, \emph{JOP}, and \e
 library(rmarkdown)
 draft("MyManuscript.Rmd", template = "ps_manuscript_pdf", package = "rmdmanuscript")
 }
-
 }
 

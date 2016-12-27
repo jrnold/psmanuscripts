@@ -1,47 +1,66 @@
-\documentclass[12pt,letterpaper,]{article}
-\usepackage[paperwidth=8.5in, paperheight=11in, top=1in, bottom=1in, left=1.25in, right=1.25in, headheight=14pt, headsep=\baselineskip]{geometry}
+% Derived from the default pandoc template for LaTeX
+% https://github.com/jgm/pandoc-templates/blob/d4f203657a838e4aa7949e39778accb55cfea303/default.latex
+% I tried to only alter the default template, but getting the title page correct required a new template
+\documentclass[12,letterpaper]{article}
 
-
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e}
-
-% Fonts
-\usepackage{newtxtext}
-\usepackage{newtxmath}
-
-% Needs to be double-spaced
+\usepackage{lmodern}
 \usepackage{setspace}
 \setstretch{2}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{eurosym}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
 
-%% fancyhdr
-% \usepackage{fancyhdr}
+\usepackage[letterpaper,margin=1in]{geometry}
 
-%% caption style
-\usepackage[format=hang, labelfont=bf, font=small]{caption}
-
-\usepackage{hyperref}
-\hypersetup{unicode=true,
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
             pdftitle={Political Science Manuscript},
-              pdfauthor={Jeffrey Arnold},
-              colorlinks=true,
-            linkcolor=black,
-            citecolor=black,
-            urlcolor=black,
+            pdfauthor={Jeffrey Arnold},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 
-% Citations should by APSR style
+% added value
+% Put specific values for the styles
+% For natbib use Harvard styles with apsr
+\usepackage[]{natbib}
+\usepackage{har2nat}
+\bibliographystyle{apsr}
+
+% For biblatex use biblatex-chicago
 
 
 
-
-
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% By default if numbering, only number up to two-sections
+\setcounter{secnumdepth}{0}
 
 % Do not number sections
 % Section formats from APSA Style Guide
@@ -52,15 +71,22 @@
 \titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\filright}{}{}{}
 % 3rd level is underlined and runs into the paragraph
 \titleformat{\subsubsection}[runin]{\normalfont\normalsize\itshape}{}{}{}
-% Do not number sections
+
+% By default if numbering, only number up to two-sections
 \setcounter{secnumdepth}{0}
 
 
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 
-% manuscripts should not have thanks
+
 \title{Political Science Manuscript}
-    \author{Jeffrey Arnold}
-  \date{}
+
+% should this be done at the template or R level?
+\author{Jeffrey Arnold}
+\date{}
 
 \begin{document}
 \maketitle
@@ -68,10 +94,10 @@
 \begin{abstract}
 Abstract text goes here.
 \end{abstract}
+
+% avoid numbering the title page
 \thispagestyle{empty}
 \clearpage
-
-\setcounter{page}{1}
 
 
 \section{Section}\label{section}
@@ -140,6 +166,5 @@ leo. Duis ut feugiat sem. Duis fringilla, mi in feugiat facilisis, dui
 arcu condimentum tellus, nec fringilla lorem risus sed sem. Duis sodales
 luctus vehicula. Quisque imperdiet pellentesque purus, eget vulputate
 nibh tincidunt at.
-
 
 \end{document}

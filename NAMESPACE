@@ -2,3 +2,4 @@
 
 export(ps_manuscript_pdf)
 export(ps_manuscript_word)
+importFrom(rmarkdown,pandoc_variable_arg)
