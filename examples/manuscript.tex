@@ -59,9 +59,6 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-% By default if numbering, only number up to two-sections
-\setcounter{secnumdepth}{0}
-
 % Do not number sections
 % Section formats from APSA Style Guide
 \usepackage{titlesec}
@@ -70,7 +67,8 @@
 % 2nd level is to the left and bold
 \titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\filright}{}{}{}
 % 3rd level is underlined and runs into the paragraph
-\titleformat{\subsubsection}[runin]{\normalfont\normalsize\itshape}{}{}{}
+% but use bold instead of underline
+\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{}{}{}[.]
 
 % By default if numbering, only number up to two-sections
 \setcounter{secnumdepth}{0}

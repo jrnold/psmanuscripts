@@ -1,0 +1,152 @@
+% Derived from the default pandoc template for LaTeX
+% https://github.com/jgm/pandoc-templates/blob/d4f203657a838e4aa7949e39778accb55cfea303/default.latex
+% And then adjusted to fit with the basic format of
+% the APSA style manual http://www.apsanet.org/Portals/54/APSA%20Files/publications/APSAStyleManual2006.pdf
+\documentclass[12,letterpaper]{article}
+
+% Set margins
+\usepackage[letterpaper,margin=1in]{geometry}
+
+% Load fonts
+\usepackage{lmodern}
+
+% Double space
+\usepackage{setspace}
+\setstretch{2}
+
+% Includes math symbols and equation environments
+\usepackage{amssymb,amsmath}
+
+% If using pdftex
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{eurosym}
+
+% If using xelatex or luatex
+\usepackage{mathspec}
+% \usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\newcommand{\euro}{€}
+
+% use straight quotes in verbatim environments
+\usepackage{upquote}
+% some nicer formatting
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+% hyperref
+\usepackage[unicode=true]{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+$endif$
+\hypersetup{colorlinks=true,
+            linkcolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
+            pdfborder={0 0 0},
+            breaklinks=true}
+
+% don't use monospace font for urls
+\urlstyle{same}
+
+% This will allow you to include longer tables
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\usepackage{footnote}
+\makesavenoteenv{long table}
+
+% Some packages for graphics
+\usepackage{graphicx,grffile}
+% don't worry aobut this, but it helps ensure that graphics don't go over the ir space
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% Make links footnotes instead of hotlinks:
+% Useful for printing
+% \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+
+% Allow for underlines
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+% This avoids overfull header lines
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Turn off numbering sections
+\setcounter{secnumdepth}{0}
+
+% Section formats from APSA Style Guide
+% http://www.apsanet.org/Portals/54/APSA%20Files/publications/APSAStyleManual2006.pdf
+\usepackage[calcwidth]{titlesec}
+% 1st level is centered and bold
+\titleformat{\section}[block]{\normalfont\bfseries\large\filcenter}{}{}{}
+% 2nd level is to the left and bold
+\titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\filright}{}{}{}
+% 3rd level is underlined and runs into the paragraph
+% But use bold instead of underline
+\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{}{}{}[.]
+
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+%%% EDIT
+
+% If using natbib for citations use the APSR style
+\usepackage[]{natbib}
+\usepackage{har2nat}
+\bibliographystyle{apsr}
+
+% If using biblatex for citations use Chicago Author-Date style (there is no APSR style)
+% \usepackage[authordate]{biblatex-chicago}
+% Add path to bibliography
+% \addbibresource{something.bib}
+
+\title{The title of the paper \thanks{Thanks notes}}
+\providecommand{\subtitle}[1]{}
+\subtitle{The paper subtitle}
+
+\author{Author1 \and Author2}
+\providecommand{\institute}[1]{}
+\institute{University of Washington \and University of Washington}
+% By default it will be todays
+\date{}
+
+% PDF metadata
+\hypersetup{
+  pdftitle={},
+  pdfauthor={},
+  pdfkeywords={}
+  }
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The abstract should be 150 words.
+\end{abstract}
+
+\thispagestyle{empty}
+\clearpage
+
+
+% IF using natbib
+\renewcommand\refname{References}
+\bibliography{mybibliography.bib}
+
+% If BibLaTeX
+% \printbibliography[title=References]
+
+\end{document}
