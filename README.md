@@ -8,13 +8,14 @@ This is primarily used to provide templates for research papers for students in 
 # R Markdown
 
 This package is not on CRAN. Install the package using **devtools**:
+
 ```{r}
-devtools::install_github("jrnold/psmanuscript")
+devtools::install_github("jrnold/psmanuscripts")
 ```
 
 # Other Formats
 
 The directory `templates` contains LaTeX and Word Document templates:
 
-- `manuscript.docx`: A Word Document template
-- `manuscript.tex`: A LaTeX template
+-   `manuscript.docx`: A Word Document template
+-   `manuscript.tex`: A LaTeX template
